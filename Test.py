@@ -5,13 +5,15 @@ import wikipedia
 import webbrowser
 import os
 
-
+#--------------------------------------
+from utils.date_time import *
+#--------------------------------------
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 
-
+TimeObject = [" time"," date"," day"," year"," month"]
 
 
 def speak(audio):
@@ -71,8 +73,9 @@ def work(query):
             print(songs)
             os.startfile(os.path.join(music_dir, songs[0]))
 
-        elif 'the time' in query:    
-            speak(datetime.datetime.now())
+        elif any(s in query for s in TimeObject):
+            strTime = GetDateTime(query)    
+            speak(strTime)
 
         elif 'quit' in query:
             speak("Quitting!")
