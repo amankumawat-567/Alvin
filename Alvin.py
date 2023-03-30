@@ -1,6 +1,5 @@
 import pyttsx3
 import speech_recognition as sr
-import datetime
 import webbrowser
 
 #--------------------------------------
@@ -14,6 +13,7 @@ engine.setProperty('voice', voices[0].id)
 
 TimeObject = ["time","date","day","year","month"]
 ReminderObject = ["set reminder","remind me"]
+TimerObject = ["set timer","remind me after"]
 QuitingObject = ["quit","exit","shutdown","sleep","off","turn off"]
 
 
@@ -57,6 +57,13 @@ def work(query,xml_file,Reminders):
         elif 'open google' in query:
             webbrowser.open("google.com")
 
+        elif any(s in query for s in TimerObject):
+            SetTimer(query)   
+            if TimerObject[0] in query:
+                speak("Timer set")
+            else:
+                speak("Okay I'll remind you")
+
         elif any(s in query for s in TimeObject):
             strTime = GetDateTime(query)    
             speak(strTime)
@@ -64,12 +71,14 @@ def work(query,xml_file,Reminders):
         elif any(s in query for s in ReminderObject):
             strReminderTime = strFindTime(query)
             AddReminder(xml_file,strReminderTime,Reminders)    
-        
             speak("Okay I'll remind you")
 
         elif any(s in query for s in QuitingObject):
             speak("Quitting!")
             exit()
+
+        else:
+            speak("Sorry I didn't get what you want to say")
 
 if __name__ == "__main__":
     wishMe()

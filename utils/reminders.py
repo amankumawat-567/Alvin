@@ -1,8 +1,22 @@
 import xml.etree.ElementTree as ET
 import datetime
-import winsound
+from playsound import playsound
 import threading
 import re
+
+def SetTimer(query):
+    time = 0
+    factor = 1
+
+    for i in ["second","minute","hour"]:
+        pattern = r"(\d+)\s+" + i +"?"
+        match = re.search(pattern, query)
+        if match :
+            time += int(match.group(1))*factor
+        factor *= 60
+
+    Timer = threading.Timer(time,playsound,args=["res\Timer_notification.mp3"])
+    Timer.start()
 
 def strFindTime(query):
     time_pattern = r'\b(1[0-2]|[1-9]):([0-5][0-9])\s*([ap])\b'
@@ -43,7 +57,7 @@ def FindDelay(NextReminderTime):
     return NextReminderTime
 
 def ReminderBeep(Reminders):
-    winsound.Beep(440,1000)
+    playsound("res\Reminder_notification.mp3")
     del Reminders[0]
     if len(Reminders)>0:
         NextReminderTime = Reminders[0]
