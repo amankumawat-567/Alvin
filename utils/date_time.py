@@ -2,12 +2,12 @@ import datetime
 
 def Meridiem(strHour):
     Hr = eval(strHour)
-    if Hr > 12:
+    if Hr >= 12:
         Hr = str(Hr - 12)
-        Mer = "PM"
+        Mer = "p.m."
     else :
         Hr = str(Hr)
-        Mer = "AM"
+        Mer = "a.m."
     return Hr,Mer
 
 WeekDay = {
@@ -27,12 +27,6 @@ def GetTime(strToday):
     strTime = strHour + ":" + strMinutes + " " + strMeridiem
     return strTime
 
-def GetDate(strToday):
-    strdate = strToday.strftime("%d")
-    strMonth = strToday.strftime("%B")
-    strDate = strdate + " " + strMonth
-    return strDate
-
 def AddAND(res):
     if res != "":
         res = res + " "
@@ -44,7 +38,7 @@ def GetDateTime(query):
     if 'month' in query:
         res = strToday.strftime("%B")
     if 'date' in query:
-        res = GetDate(strToday)
+        res = strToday.strftime("%d %B")
     if 'year' in query:
         res = AddAND(res) + strToday.strftime("%Y")
     if 'day' in query:

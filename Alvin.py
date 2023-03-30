@@ -1,19 +1,20 @@
 import pyttsx3
 import speech_recognition as sr
 import datetime
-import wikipedia
 import webbrowser
-import os
 
 #--------------------------------------
 from utils.date_time import *
+from utils.reminders import *
 #--------------------------------------
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 
-TimeObject = [" time"," date"," day"," year"," month"]
+TimeObject = ["time","date","day","year","month"]
+ReminderObject = ["set reminder","remind me"]
+QuitingObject = ["quit","exit","shutdown","sleep","off","turn off"]
 
 
 def speak(audio):
@@ -49,44 +50,35 @@ def takeCommand():
         return "None"
     return query
 
-def work(query):
-        if 'wikipedia' in query:
-            speak('Searching Wikipedia...')
-            query = query.replace("wikipedia", "")
-            results = wikipedia.summary(query, sentences=2)
-            speak("According to Wikipedia")
-            print(results)
-            speak(results)
-
-        elif 'open youtube' in query:
+def work(query,xml_file,Reminders):
+        if 'open youtube' in query:
             webbrowser.open("youtube.com")
 
         elif 'open google' in query:
             webbrowser.open("google.com")
 
-        elif 'open stack overflow' in query:
-            webbrowser.open("stackoverflow.com")
-
-        elif 'play music' in query:
-            music_dir = 'C:\\Users\\Username\\Music'
-            songs = os.listdir(music_dir)
-            print(songs)
-            os.startfile(os.path.join(music_dir, songs[0]))
-
         elif any(s in query for s in TimeObject):
             strTime = GetDateTime(query)    
             speak(strTime)
 
-        elif 'quit' in query:
+        elif any(s in query for s in ReminderObject):
+            strReminderTime = strFindTime(query)
+            AddReminder(xml_file,strReminderTime,Reminders)    
+        
+            speak("Okay I'll remind you")
+
+        elif any(s in query for s in QuitingObject):
             speak("Quitting!")
             exit()
 
 if __name__ == "__main__":
     wishMe()
+    ReminderXml = 'data\Reminders.xml'
+    Reminders = []
+    Reminders = GetReminders(ReminderXml,Reminders)
     while True:
         query = takeCommand()
         if query.startswith("Alvin"):
             print(f"User said: {query}\n")
-            work(query.lower())
-
-        
+            work(query.lower(),ReminderXml,Reminders)
+            
