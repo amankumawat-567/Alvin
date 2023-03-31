@@ -5,6 +5,7 @@ import webbrowser
 #--------------------------------------
 from utils.date_time import *
 from utils.reminders import *
+from utils.app_launcher import *
 #--------------------------------------
 
 engine = pyttsx3.init('sapi5')
@@ -50,12 +51,17 @@ def takeCommand():
         return "None"
     return query
 
-def work(query,xml_file,Reminders):
+def work(query,Reminders):
         if 'open youtube' in query:
             webbrowser.open("youtube.com")
 
         elif 'open google' in query:
             webbrowser.open("google.com")
+
+        elif 'open' in query:
+            app_name = query[11:]
+            speak(f"opening {app_name}")
+            LaunchApp(app_name,"data\pre_searches_app_url.xml")
 
         elif any(s in query for s in TimerObject):
             SetTimer(query)   
@@ -70,7 +76,7 @@ def work(query,xml_file,Reminders):
 
         elif any(s in query for s in ReminderObject):
             strReminderTime = strFindTime(query)
-            AddReminder(xml_file,strReminderTime,Reminders)    
+            AddReminder('data\Reminders.xml',strReminderTime,Reminders)    
             speak("Okay I'll remind you")
 
         elif any(s in query for s in QuitingObject):
@@ -82,12 +88,11 @@ def work(query,xml_file,Reminders):
 
 if __name__ == "__main__":
     wishMe()
-    ReminderXml = 'data\Reminders.xml'
     Reminders = []
-    Reminders = GetReminders(ReminderXml,Reminders)
+    Reminders = GetReminders('data\Reminders.xml',Reminders)
     while True:
         query = takeCommand()
         if query.startswith("Alvin"):
             print(f"User said: {query}\n")
-            work(query.lower(),ReminderXml,Reminders)
+            work(query.lower(),Reminders)
             
