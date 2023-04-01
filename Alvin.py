@@ -1,7 +1,7 @@
 import pyttsx3
 import speech_recognition as sr
 import webbrowser
-
+import wikipedia
 #--------------------------------------
 from utils.date_time import *
 from utils.reminders import *
@@ -54,16 +54,31 @@ def takeCommand():
     return query
 
 def work(query,Reminders):
-        if (' search ' in query) and ((" directory" in  query) or any(s in query for s in sysFolders)):
-            try:
-                FileSearch(query,sysFolders)
-            except:
-                speak("Sorry I didn't get that")
+        if (' search ' in query):
+            if query[-6:] == "google":
+                speak("googling it")
+                pattern = r'search(?: for|) (.*)(?: on| in| at) google'
+                match = re.search(pattern, query)
+                search_query = match.group(1)
+                webbrowser.open(f"https://www.google.com/search?q={search_query}")
+            elif query[-7:] == "youtube":
+                speak("searching youtube")
+                pattern = r'search(?: for|) (.*)(?: on| in| at) youtube'
+                match = re.search(pattern, query)
+                search_query = match.group(1)
+                webbrowser.open(f"https://www.youtube.com/results?search_query={search_query}")
+            else:
+                try:
+                    FileSearch(query,sysFolders)
+                except:
+                    speak("Sorry I didn't get that")
 
         elif 'open youtube' in query:
+            speak("opening youtube")
             webbrowser.open("youtube.com")
 
         elif 'open google' in query:
+            speak("opening google")
             webbrowser.open("google.com")
 
         elif (" directory" in  query) or any(s in query for s in sysFolders):
@@ -99,7 +114,10 @@ def work(query,Reminders):
             exit()
 
         else:
-            speak("Sorry I didn't get what you want to say")
+            try:
+                speak("according to wikipedia " + wikipedia.summary(query[6:], sentences=2))
+            except:    
+                speak("Sorry I didn't get what you want to say")
 
 if __name__ == "__main__":
     wishMe()
