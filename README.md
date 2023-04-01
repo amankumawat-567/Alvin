@@ -1,5 +1,5 @@
 # Alvin
-![logo](https://github.com/amankumawat-567/Alvin/main/banner.png)
+![logo](https://github.com/amankumawat-567/Alvin/blob/main/banner.png)
 
 ## Alvin - Desktop Assistant
 Alvin is a desktop assistant that works on CUI with speech recognition. It can perform the following tasks:
