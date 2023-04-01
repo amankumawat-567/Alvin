@@ -6,6 +6,8 @@ import webbrowser
 from utils.date_time import *
 from utils.reminders import *
 from utils.app_launcher import *
+from utils.file_search import *
+from utils.open_folder import *
 #--------------------------------------
 
 engine = pyttsx3.init('sapi5')
@@ -16,7 +18,7 @@ TimeObject = ["time","date","day","year","month"]
 ReminderObject = ["set reminder","remind me"]
 TimerObject = ["set timer","remind me after"]
 QuitingObject = ["quit","exit","shutdown","sleep","off","turn off"]
-
+sysFolders = ["desktop","documents","downloads","music","pictures","videos"]
 
 def speak(audio):
     engine.say(audio)
@@ -52,11 +54,24 @@ def takeCommand():
     return query
 
 def work(query,Reminders):
-        if 'open youtube' in query:
+        if (' search ' in query) and ((" directory" in  query) or any(s in query for s in sysFolders)):
+            try:
+                FileSearch(query,sysFolders)
+            except:
+                speak("Sorry I didn't get that")
+
+        elif 'open youtube' in query:
             webbrowser.open("youtube.com")
 
         elif 'open google' in query:
             webbrowser.open("google.com")
+
+        elif (" directory" in  query) or any(s in query for s in sysFolders):
+            try:
+                OpenFolder(query)
+                speak("Opening")
+            except:
+                speak("Sorry I can't find")
 
         elif 'open' in query:
             app_name = query[11:]
