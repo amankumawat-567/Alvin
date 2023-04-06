@@ -5,6 +5,7 @@ import wikipedia
 #--------------------------------------
 from utils.date_time import *
 from utils.reminders import *
+from utils.timer import *
 from utils.app_launcher import *
 from utils.file_search import *
 from utils.open_folder import *
@@ -105,8 +106,8 @@ def work(query,Reminders):
             speak(strTime)
 
         elif any(s in query for s in ReminderObject):
-            strReminderTime = strFindTime(query)
-            AddReminder('data\Reminders.xml',strReminderTime,Reminders)    
+            Reminderdata = getReminderData(query)
+            Reminders.AddReminder(Reminderdata)  
             speak("Okay I'll remind you")
 
         elif any(s in query for s in QuitingObject):
@@ -121,8 +122,8 @@ def work(query,Reminders):
 
 if __name__ == "__main__":
     wishMe()
-    Reminders = []
-    Reminders = GetReminders('data\Reminders.xml',Reminders)
+    Reminders = reminder()
+    Reminders.GetReminders()
     while True:
         query = takeCommand()
         if query.startswith("Alvin"):

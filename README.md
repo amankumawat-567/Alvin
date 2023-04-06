@@ -19,8 +19,7 @@ To use Alvin, you need to say "Alvin" before issuing a command. For example, to 
 
 * "Alvin, what's the time?" or "Alvin, tell me the date and time"
 * "Alvin, set a timer for [duration]"
-* "Alvin, remind me at [time]"
-* "Alvin, open [application name]"
+* "Alvin, remind me for [task] at [time]"
 * "Alvin, open [folder name] folder" or "Alvin, open [folder name]"
 * "Alvin, search for [file or folder name] in [parent folder name]"
 * "Alvin, searchfor [query] on Google" or "Alvin, search for [query] on YouTube"
@@ -29,7 +28,7 @@ To use Alvin, you need to say "Alvin" before issuing a command. For example, to 
 Example Commands
 * "Alvin, what's the time?"
 * "Alvin, set a timer for 10 minutes"
-* "Alvin, remind me at 3:00 p.m."
+* "Alvin, remind me for a meeting with client at 3:00 p.m. tommorow"
 * "Alvin, open Chrome"
 * "Alvin, open Documents folder"
 * "Alvin, search for report.pdf in Downloads"
@@ -54,7 +53,14 @@ To install and use Alvin, you must have Python 3.6 or later installed on your co
 Alvin can speak the current date and time, including the weekday, month, and year, upon request. You can say "Alvin What's the current date and time?" or "Alvin Tell me the time" to hear the current date and time spoken aloud. If you want to know the weekday, month, or year specifically, you can ask Alvin by saying "Alvin What day is it today?", "Alvin What's the current month?", or "Alvin What's the current year?". Alvin will speak the requested information in a clear and concise manner, making it easy for you to stay on top of your schedule.
 
 ### Reminders:
-Alvin allows you to create reminders for yourself. To set a reminder, say "Alvin Set a reminder for [time]". For example, you can say "Alvin Set a reminder for 2:30 p.m.". Alvin will remind you at the specified date and time.
+Alvin allows you to create reminders for yourself.It understands natural language commands, making it easy to set reminders. For example, you can say "Alvin, remind me to call John at 3:00 p.m. on 5 march." It also works with flexible date options like "today" and "tomorrow".Alvin will remind you at the specified date and time.
+It works like:
+1. Speak the following command: "Alvin, remind me or set reminder for [task] at [time] [date]"
+2. If you do not provide a date in your command, Alvin will assume that you want the reminder set for today.
+3. If you want to set a reminder for a specific date, you can use words like "today," "tomorrow," or you can specify the date in a format such as "12 April."
+4. Alvin will confirm your reminder by saying "Okay I'll remind you".
+
+You can edit or delete reminders at any time by tapping on the reminder in the list.
 In addition to setting reminders, Alvin can also set timers for you. To set a timer, say "Alvin Set a timer for [number] [unit]". For example, you can say "Set a timer for 10 minutes" or "Set a timer for 1 hour and 30 minutes". Alvin will start the timer and notify you when the time is up.
 
 ### App Launcher:
