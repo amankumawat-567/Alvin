@@ -3,6 +3,7 @@ import threading
 import re
 
 def SetTimer(query):
+    #Find time duration from query and activate a timer for that
     time = 0
     factor = 1
 

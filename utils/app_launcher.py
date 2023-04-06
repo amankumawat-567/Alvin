@@ -4,6 +4,7 @@ import glob
 import xml.etree.ElementTree as ET
 
 def AddSearchToDatabase(xml_file,app_name,file_path):
+    #add Once searched App path to pre_searches_app_url.xml for later fast functioning
     tree = ET.parse(xml_file)
     root = tree.getroot()
 
@@ -28,6 +29,7 @@ def AddSearchToDatabase(xml_file,app_name,file_path):
         f.write(xml_string)
 
 def SearchDatabase(app_name,xml_file):
+    # searching in pre_searches_app_url.xml for path of App user want to open
     tree = ET.parse(xml_file)
     root = tree.getroot()
     for elm in root.findall("./App"):
@@ -36,6 +38,7 @@ def SearchDatabase(app_name,xml_file):
     return 0
 
 def FindPath(app_name,xml_file):
+    # searching for app path
     app_path = SearchDatabase(app_name,xml_file)
 
     if app_path == 0:
@@ -77,6 +80,7 @@ def FindPath(app_name,xml_file):
 
 
 def LaunchApp(app_name,xml_file):
+    #trying to launch App user want to open
     try :
         subprocess.run(app_name)
     except :

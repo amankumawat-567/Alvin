@@ -2,6 +2,7 @@ import os
 import re
 
 def FindAll(query,substring):
+    #Create list of all mainted folders in query in given sequence
     list = [query.find(substring)]
     i=0 
     while list[i] != -1:
@@ -10,6 +11,7 @@ def FindAll(query,substring):
     return list
 
 def CreateSearchLoaction(query):
+    #convert natural language to folder path where to perform search
     strDirectory = query[query.find(" directory")-1]
     listFolder = FindAll(query," folder")
     listIN = FindAll(query," in ")
@@ -21,6 +23,7 @@ def CreateSearchLoaction(query):
     return path
 
 def QueriedFileName(query):
+    #Find name for which user want to search ([file/folder name], [.extension] and [file.extension]) 
     try:
         match = re.search( r"search(?: for)? (\w+)(?: file| | folder)",query)
         name = match.group(1)
@@ -34,11 +37,12 @@ def QueriedFileName(query):
     return name
 
 def FileSearch(query,sysFolders):
+    #Run a file search using windows file explorer search query 
     match = re.search(r" in (\w+)(?: folder|)",query)
     SearchPath = match.group(1)
-    if SearchPath in sysFolders:
+    if SearchPath in sysFolders: #if user want to search in system folder
         SearchPath = "C%3A%5CUsers%5Camank%5C" + SearchPath
-    else:
+    else: #if user want to search in specific folder on pc
         SearchPath = CreateSearchLoaction(query)
 
     file_name = QueriedFileName(query) 

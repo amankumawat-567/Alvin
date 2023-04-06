@@ -1,6 +1,7 @@
 import datetime
 
 def Meridiem(strHour):
+    #Find Meridiem for a 24 hour format time.
     Hr = eval(strHour)
     if Hr >= 12:
         Hr = str(Hr - 12)
@@ -21,6 +22,7 @@ WeekDay = {
 }
 
 def GetTime(strToday):
+    #Convert 24 hour format to 12 hour format.
     strHour = strToday.strftime("%H")
     strMinutes = strToday.strftime("%M")
     strHour,strMeridiem = Meridiem(strHour)
@@ -28,11 +30,13 @@ def GetTime(strToday):
     return strTime
 
 def AddAND(res):
+    #Add space to organise output
     if res != "":
         res = res + " "
     return res
 
 def GetDateTime(query):
+    #find what user is asking for and then add current month, date, year, weekday and time accordingly
     strToday = datetime.datetime.now()
     res = ""
     if 'month' in query:
