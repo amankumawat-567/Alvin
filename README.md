@@ -35,9 +35,6 @@ Example Commands
 * "Alvin, search for weather in New York on Google"
 * "Alvin, what is the capital of France?"
 
-### Conclusion
-We hope that you find Alvin helpful in your day-to-day tasks. If you have any feedback or suggestions, please feel free to reach out to us.
-
 ## Introduction:
 Alvin is a speech recognition-based command-line interface (CUI) desktop assistant designed to assist users with various tasks. It offers features such as date and time display, reminders, app launching, web searches, folder opening, file searching, and answering questions using Wikipedia. This documentation provides a detailed overview of Alvin's features and functionalities.
 
@@ -89,7 +86,7 @@ Alvin is a powerful and versatile desktop assistant that can help you with vario
 
 ## To Run the Project in the Virtual Environment named "env":
 1. Open your terminal/command prompt and navigate to the project directory.
-1. Activate the virtual environment by running the command `source env/bin/activate (for Unix-based systems)` or `env\Scripts\activate (for Windows)`.
+1. Activate the virtual environment by running the command `source env/bin/activate` (for Unix-based systems) or `env\Scripts\activate` (for Windows).
 1. Install the project dependencies by running the command `pip install -r requirements.txt`. This will install all the necessary libraries and packages required to run the project.
 1. Run the main script by executing the command `python Alvin.py`.
 1. Alvin will now start running in the command line interface with speech recognition enabled, and you can start interacting with it by giving voice commands.
@@ -97,7 +94,7 @@ Alvin is a powerful and versatile desktop assistant that can help you with vario
 Note: Before running the project, make sure that you have installed all the required dependencies listed in the `requirements.txt` file. Additionally, ensure that your microphone is properly connected and configured on your system, so that Alvin can accurately recognize your voice commands.
 
 ## Contributor's Guide
-Thank you for considering contributing to our project! We welcome all contributions, big or small, and appreciate your effort to make this project better.
+Thank you for considering contributing to our project! I welcome all contributions, big or small, and appreciate your effort to make this project better.
 
 ### Getting Started
 Before you start contributing to the project, you need to follow these steps:
@@ -124,4 +121,4 @@ I expect all contributors to follow our Code of Conduct. Please be respectful an
 If you find any bugs or issues in the project, please open an issue in the repository and provide as much detail as possible, including steps to reproduce the issue, error messages, and screenshots if applicable.
 
 ### Conclusion
-I value and appreciate all contributions to our project. Thank you for helping us make this project better for everyone
+I hope that you find Alvin helpful in your day-to-day tasks. If you have any feedback or suggestions, please feel free to reach out to us.
