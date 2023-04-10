@@ -1,5 +1,5 @@
 # Alvin
-![logo](https://github.com/amankumawat-567/Alvin/blob/main/banner.png)
+![logo](banner.png)
 
 ## Alvin - Desktop Assistant
 Alvin is a desktop assistant that works on CUI with speech recognition. It can perform the following tasks:
@@ -119,6 +119,9 @@ I expect all contributors to follow our Code of Conduct. Please be respectful an
 
 ### Reporting Bugs
 If you find any bugs or issues in the project, please open an issue in the repository and provide as much detail as possible, including steps to reproduce the issue, error messages, and screenshots if applicable.
+
+## License
+This project is currently licensed under [Apache](LICENSE.txt).
 
 ### Conclusion
 I hope that you find Alvin helpful in your day-to-day tasks. If you have any feedback or suggestions, please feel free to reach out to us.
